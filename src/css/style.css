@@ -1,0 +1,8 @@
+div.searchImageContainer img.searchImage {
+  height:10em;
+  width: 100%;
+}
+
+div.searchImageContainer {
+  padding: 15px;
+}
