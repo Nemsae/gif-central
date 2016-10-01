@@ -1,26 +1,39 @@
 import React, { Component } from 'react'
-import GifActions from '../actions/GifActions'
 
+import GifActions from '../actions/GifActions'
+import SearchStore from '../stores/SearchStore'
 
 export default class GifPlayground extends Component {
   constructor() {
     super();
+    this.state = {
+      image: SearchStore.getImageUrl(),
+    }
+
+    this._onChange = this._onChange.bind(this);
   }
 
   componentWillMount() {
-    let { id } = this.props.params;
-    console.log('id in playground: ',id);
-    GifActions.fetchGifById(id);
+    SearchStore.startListening(this._onChange);
+  }
 
+  componentWillUnmount() {
+    SearchStore.stopListening(this._onChange);
+  }
+
+  _onChange() {
+    this.setState({
+      image: SearchStore.getImageUrl,
+    })
   }
 
   render() {
+    let { image } = this.state;
 
-    console.log('this.props: ',this.props)
     return (
       <div>
-
         <h1>Gif Playground</h1>
+        <img src={image} />
 
       </div>
     )

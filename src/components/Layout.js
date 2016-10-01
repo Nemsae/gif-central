@@ -9,6 +9,8 @@ export default class Layout extends Component {
 
   render() {
     let path = this.props.location.pathname;
+    // console.log('path: ',path)
+    // console.log('props: ',this.props)
 
     // let searchClasses = classNames({ active: path === '/search'})
 
@@ -17,20 +19,15 @@ export default class Layout extends Component {
         <h1 className='text-center'>Gif Central</h1>
 
         <ul className="nav nav-tabs">
-          {/* <li role="presentation" className={searchClasses}> */}
-          {/* <li role="presentation" className={classNames({ active: path === '/'})}>
-            <Link to='/'>Home</Link>
-          </li> */}
           <li role="presentation" className={classNames({ active: path === '/search'})}>
             <Link to='/search'>Search Page</Link>
           </li>
-          <li role="presentation" className={classNames({ active: path === '/gifplayground'})}>
-            <Link to='/gifplayground'>Gif Playground</Link>
+          <li role="presentation" className={classNames({ active: path === `/gifplayground/${this.props.params.id}`})}>
+            <Link to={`/gifplayground/${this.props.params.id}`} >Gif Playground</Link>
           </li>
 
         </ul>
 
-        {/* So all child components/routes of Layout will be here */}
         {this.props.children}
 
       </div>

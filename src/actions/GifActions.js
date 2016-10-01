@@ -1,4 +1,5 @@
 import API from '../API'
+import AppDispatcher from '../AppDispatcher'
 
 const GifActions = {
 
@@ -8,6 +9,13 @@ const GifActions = {
 
   fetchGifById(id) {
     API.receiveGifById(id);
+  },
+
+  sendImage(url) {
+    AppDispatcher.dispatch({
+      type: 'SEND_URL',
+      payload: { url }
+    })
   },
 
 }

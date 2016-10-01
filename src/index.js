@@ -11,9 +11,7 @@ render(
   <Router history={browserHistory}>
     <Route path='/' component={Layout}>
       <Route path='/search' component={SearchPage}/>
-      {/* :id is a dynamic */}
       <Route path='/gifplayground/:id' component={GifPlayground}/>
-      {/* <Route path='/gifplayground/:id' component={GifPlayground}/> */}
     </Route>
   </Router>,
   document.getElementById('root')

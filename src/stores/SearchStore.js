@@ -2,6 +2,7 @@ import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 
 let _searchResults = [];
+let _imageUrl = '';
 
 class SearchStore extends EventEmitter {
   constructor() {
@@ -12,9 +13,15 @@ class SearchStore extends EventEmitter {
       let {type, payload} = action;
       switch (type) {
         case 'RECEIVE_SEARCH_RESULTS':
-          _searchResults = payload.gifResults;
+        _searchResults = payload.gifResults;
         this.emit('CHANGE');
         break;
+
+        case 'SEND_URL':
+        _imageUrl = payload.url;
+        this.emit('CHANGE');
+        break;
+
       }
     })
 
@@ -31,6 +38,10 @@ class SearchStore extends EventEmitter {
 
   getSearchResults() {
     return _searchResults;
+  }
+
+  getImageUrl() {
+    return _imageUrl;
   }
 
 }
