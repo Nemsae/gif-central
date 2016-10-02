@@ -7,6 +7,10 @@ const GifActions = {
     API.receiveGifSearch(userInput);
   },
 
+  fetchStickerSearch(stickerInput) {
+    API.receiveStickerSearch(stickerInput);
+  },
+
   fetchGifById(id) {
     API.receiveGifById(id);
   },
@@ -17,6 +21,14 @@ const GifActions = {
       payload: { url }
     })
   },
+
+  sendStickerImage( stickerPackage ) {
+    AppDispatcher.dispatch({
+      type: 'SEND_STICKER_IMG',
+      payload: { stickerPackage }
+    })
+  },
+
 
 }
 

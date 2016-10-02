@@ -10,6 +10,13 @@ const ServerActions = {
     })
   },
 
+  sendStickerSearchResults(stickerResults) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_STICKER_RESULTS',
+      payload: {stickerResults},
+    })
+  },
+
 }
 
 export default ServerActions;

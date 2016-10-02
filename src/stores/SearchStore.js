@@ -3,6 +3,8 @@ import AppDispatcher from '../AppDispatcher'
 
 let _searchResults = [];
 let _imageUrl = '';
+let _stickerResults = [];
+let _stickerPackages = [];
 
 class SearchStore extends EventEmitter {
   constructor() {
@@ -10,8 +12,9 @@ class SearchStore extends EventEmitter {
 
 
     AppDispatcher.register(action => {
-      let {type, payload} = action;
+      let { type, payload } = action;
       switch (type) {
+
         case 'RECEIVE_SEARCH_RESULTS':
         _searchResults = payload.gifResults;
         this.emit('CHANGE');
@@ -19,6 +22,16 @@ class SearchStore extends EventEmitter {
 
         case 'SEND_URL':
         _imageUrl = payload.url;
+        this.emit('CHANGE');
+        break;
+
+        case 'RECEIVE_STICKER_RESULTS':
+        _stickerResults = payload.stickerResults;
+        this.emit('CHANGE')
+        break;
+
+        case 'SEND_STICKER_IMG':
+        _stickerPackages.push(payload.stickerPackage);
         this.emit('CHANGE');
         break;
 
@@ -42,6 +55,14 @@ class SearchStore extends EventEmitter {
 
   getImageUrl() {
     return _imageUrl;
+  }
+
+  getStickerResults() {
+    return _stickerResults;
+  }
+
+  getStickerPackage() {
+    return _stickerPackages;
   }
 
 }
