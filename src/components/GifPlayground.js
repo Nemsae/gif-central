@@ -26,7 +26,7 @@ export default class GifPlayground extends Component {
 
   _onChange() {
     this.setState({
-      image: SearchStore.getImageUrl,
+      image: SearchStore.getImageUrl(),
     })
   }
 

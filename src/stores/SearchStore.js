@@ -10,7 +10,6 @@ class SearchStore extends EventEmitter {
   constructor() {
     super();
 
-
     AppDispatcher.register(action => {
       let { type, payload } = action;
       switch (type) {
@@ -32,13 +31,13 @@ class SearchStore extends EventEmitter {
 
         case 'SEND_STICKER_IMG':
         _stickerPackages.push(payload.stickerPackage);
+        console.log('_stickerPackages: ',_stickerPackages);
         this.emit('CHANGE');
         break;
 
       }
     })
 
-    //storage
   }
 
   startListening(cb) {

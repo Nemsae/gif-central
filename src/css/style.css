@@ -51,13 +51,17 @@ div.playgroundGifContainer {
 div.userStickerContainer {
   position: absolute;
   top: 0;
-  right: 0;
-
+  /*right: 0;*/
+  /*left: 0;*/
 }
 
 img.playgroundGif {
   height: 100%;
   width: 100%;
+}
+
+img.userSticker {
+  position: absolute;
 }
 
 
