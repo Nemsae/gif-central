@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import mousewheel from 'jquery-mousewheel';
+import uuid from 'uuid';
 
 import SearchStore from '../stores/SearchStore';
 import GifActions from '../actions/GifActions';
@@ -25,10 +26,6 @@ export default class StickerBar extends Component {
     SearchStore.stopListening(this._onChange);
   }
 
-  // componentDidMount() {
-  //   $('.stickerBar').on('mousewheel');
-  // }
-
 
   _onChange() {
     this.setState({
@@ -37,21 +34,24 @@ export default class StickerBar extends Component {
   }
 
   _sendStickerImg(url, id) {
-    // console.log('url: ',url,'id: ',id);
+    console.log('url: ',url,'id: ',id);
     let StickerPackage = {
       image: url,
-      id,
+      id: uuid(),
     }
-    console.log('StickerPackage: ',StickerPackage);
+
     GifActions.sendStickerImage(StickerPackage);
   }
 
-  render() {
-    let { stickers } = this.state;
+  componentDidMount() {
     $('div.outerStickerBar').mousewheel(function(event,deltax) {
       this.scrollLeft -= (deltax * 1);
       event.preventDefault();
     })
+  }
+
+  render() {
+    let { stickers } = this.state;
 
     return (
       <div className='outerStickerBar'>
